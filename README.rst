@@ -48,10 +48,13 @@ Django view that streams a zip with 2 files
 Resources
 ---------
 
+-  Documentation: https://django-zip-stream.readthedocs.io
+-  PyPI page: http://pypi.python.org/pypi/django-zip-stream
 -  Code repository: https://github.com/travcunn/django-zip-stream
 -  Bugtracker: https://github.com/travcunn/django-zip-stream/issues
 -  Continuous integration:
    https://travis-ci.org/travcunn/django-zip-stream
+-  Roadmap: https://github.com/travcunn/django-zip-stream/milestones
 
 .. _mod\_zip: https://github.com/evanmiller/mod_zip
 .. _ZipStream: https://github.com/SpiderOak/ZipStream
