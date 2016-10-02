@@ -23,10 +23,11 @@ class Tox(TestCommand):
 here = os.path.abspath(os.path.dirname(__file__))
 
 README = open(os.path.join(here, 'README.rst')).read()
+VERSION = "0.7.1"
 
 setup(
     name='django-zip-stream',
-    version='0.7.0',
+    version=VERSION,
     description='Django extension to assemble ZIP archives dynamically.',
     long_description=README,
     author='Travis Cunningham',
