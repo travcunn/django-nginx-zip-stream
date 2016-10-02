@@ -24,7 +24,7 @@ install:
   - pip install coverage django-nose codecov
 
 script:
-  - "python manage.py test django_zip_stream"
+  - "python manage.py test --settings=tests.settings"
   
 after_success:
   - bash <(curl -s https://codecov.io/bash)
