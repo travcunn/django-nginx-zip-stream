@@ -1,0 +1,88 @@
+#######
+Install
+#######
+
+.. note::
+
+   If you want to install a development environment, please see
+   :doc:`/contributing`.
+
+
+************
+Requirements
+************
+
+`django-zip-stream` has been tested with `Python`_ 2.7, 3.4, 3.5, and pypy.
+Other versions may work, but they are not part of the test suite at the moment.
+
+Installing `django-zip-stream` will automatically trigger the installation of
+the following requirements:
+
+.. literalinclude:: /../setup.py
+   :language: python
+   :start-after: BEGIN requirements
+   :end-before: END requirements
+
+
+************
+As a library
+************
+
+In most cases, you will use `django-zip-stream` as a dependency of another
+project. In such a case, you should add `django-zip-stream` in your main
+project's requirements. Typically in :file:`setup.py`:
+
+.. code:: python
+
+   from setuptools import setup
+
+   setup(
+       install_requires=[
+           'django-zip-stream',
+           #...
+       ]
+       # ...
+   )
+
+Then when you install your main project with your favorite package manager
+(like `pip`_), `django-zip-stream` and its recursive dependencies will
+automatically be installed.
+
+
+**********
+Standalone
+**********
+
+You can install `django-zip-stream` with your favorite Python package
+manager. As an example with `pip`_:
+
+.. code:: sh
+
+   pip install django-zip-stream
+
+
+*****
+Check
+*****
+
+Check `django-zip-stream` has been installed:
+
+.. code:: sh
+
+   python -c "import django_zip_stream;print(django_zip_stream.__version__)"
+
+You should get installed `django-zip-stream`'s version.
+
+
+.. rubric:: Notes & references
+
+.. seealso::
+
+   * :doc:`/settings`
+   * :doc:`/about/changelog`
+   * :doc:`/about/license`
+
+.. target-notes::
+
+.. _`Python`: https://www.python.org/
+.. _`pip`: https://pip.pypa.io/
