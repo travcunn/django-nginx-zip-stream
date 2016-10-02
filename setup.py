@@ -1,17 +1,34 @@
 """A setuptools based setup module to install django-zip-stream."""
-from setuptools import setup
+import os
+import sys
 
-try:
-    import pypandoc
-    LONG_DESCRIPTION = pypandoc.convert('README.md', 'rst')
-except (IOError, ImportError):
-    LONG_DESCRIPTION = ''
+from setuptools import setup
+from setuptools.command.test import test as TestCommand
+
+
+class Tox(TestCommand):
+    """Test command that runs tox."""
+
+    def finalize_options(self):
+        TestCommand.finalize_options(self)
+        self.test_args = []
+        self.test_suite = True
+
+    def run_tests(self):
+        import tox  # import here, cause outside the eggs aren't loaded.
+        errno = tox.cmdline(self.test_args)
+        sys.exit(errno)
+
+#: Absolute path to directory containing setup.py file.
+here = os.path.abspath(os.path.dirname(__file__))
+
+README = open(os.path.join(here, 'README.rst')).read()
 
 setup(
     name='django-zip-stream',
     version='0.7.0',
     description='Django extension to assemble ZIP archives dynamically.',
-    long_description=LONG_DESCRIPTION,
+    long_description=README,
     author='Travis Cunningham',
     author_email='tcunningham@smartfile.com',
     url='https://github.com/travcunn/django-zip-stream',
@@ -20,4 +37,7 @@ setup(
     package_dir={'django_zip_stream': 'django_zip_stream'},
     install_requires=[
         'Django>=1.7',
-    ], )
+    ],
+    tests_require=['tox'],
+    cmdclass={'test': Tox},
+    extras_require={'test': ['tox']}, )
