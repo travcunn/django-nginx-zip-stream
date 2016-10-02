@@ -27,4 +27,6 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 NOSE_ARGS = [
     '--with-coverage',
     '--cover-package=django_zip_stream',
+    '--cover-branches',
+    '--cover-erase',
 ]
