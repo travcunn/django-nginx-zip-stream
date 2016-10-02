@@ -1,7 +1,7 @@
 """ Tests for the TransferZipResponse. """
 import django.test
 
-from django_zip_stream import TransferZipResponse
+from django_zip_stream.responses import TransferZipResponse
 
 
 class TransferZipResponseTestCase(django.test.TestCase):

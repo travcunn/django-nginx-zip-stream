@@ -17,10 +17,11 @@ See the Travis CI build matrix for detailed information regarding the latest mas
 pip install git+https://github.com/travcunn/django-zip-stream.git
 ```
 
+
 ## Examples
 ##### Django view that streams a zip with 2 files
 ```python
-from django_zip_stream import TransferZipResponse
+from django_zip_stream.responses import TransferZipResponse
 
 def download_zip(request):
     files = [
