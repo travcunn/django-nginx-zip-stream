@@ -1,9 +1,9 @@
-""" Django zip stream. """
+"""Django zip stream responses."""
 from django.http import HttpResponse
 
 
 class TransferZipResponse(HttpResponse):
-    """ Streaming zip response. """
+    """Streaming zip response."""
 
     def __init__(self, filename, files):
         """
@@ -25,9 +25,10 @@ class TransferZipResponse(HttpResponse):
 
     @staticmethod
     def _build_content(file_info):
-        """
-        Builds the content string body of a single file to send upstream to
-        Nginx.
+        """Return the content string body of a single file for use upstream.
+
+        Given a file_info tuple (path, system_path, size), this method
+        assembles a string containing mod_zip commands for a single file.
         """
         path, system_path, size = file_info
         single_file_info = "- %s %s %s" % (path, system_path, size)
