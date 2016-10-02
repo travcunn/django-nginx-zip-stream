@@ -32,7 +32,7 @@ matrix:
 
 install:
   - pip install Django==$DJANGO
-  - pip install mock pytest pytest-cov codecov
+  - pip install coverage django-nose codecov
 
 script:
   - "python manage.py test django_zip_stream"

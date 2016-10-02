@@ -20,6 +20,4 @@ setup(
     package_dir={'django_zip_stream': 'django_zip_stream'},
     install_requires=[
         'Django>=1.4',
-        'django-nose',
-        'tox',
     ], )
