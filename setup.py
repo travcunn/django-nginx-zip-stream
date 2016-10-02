@@ -9,7 +9,7 @@ except (IOError, ImportError):
 
 setup(
     name='django-zip-stream',
-    version='0.0.1',
+    version='0.7.0',
     description='Django extension to assemble ZIP archives dynamically.',
     long_description=LONG_DESCRIPTION,
     author='Travis Cunningham',
@@ -19,9 +19,7 @@ setup(
     packages=['django_zip_stream'],
     package_dir={'django_zip_stream': 'django_zip_stream'},
     install_requires=[
-        'Django>=1.5',
+        'Django>=1.4',
         'django-nose',
-        'coverage',
-        'mock',
         'tox',
     ], )
