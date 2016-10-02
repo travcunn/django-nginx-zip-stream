@@ -68,4 +68,4 @@ coverage:
 comment:
   layout: "header, diff, changes, sunburst, uncovered, tree"
   branches: *
-  behavior: default
+  behavior: new
