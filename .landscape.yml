@@ -1,4 +1,4 @@
-doc-warnings: true
+doc-warnings: false
 uses:
   - django
 strictness: veryhigh
