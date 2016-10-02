@@ -19,5 +19,5 @@ setup(
     packages=['django_zip_stream'],
     package_dir={'django_zip_stream': 'django_zip_stream'},
     install_requires=[
-        'Django>=1.4',
+        'Django>=1.7',
     ], )
