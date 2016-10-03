@@ -66,6 +66,6 @@ Resources
 .. |Code Health| image:: https://landscape.io/github/travcunn/django-zip-stream/master/landscape.svg?style=flat
    :target: https://landscape.io/github/travcunn/django-zip-stream/master
 .. |Codacy Badge| image:: https://api.codacy.com/project/badge/Grade/be7b93a01ebb4fb39aa3cbdfdabfccd9
-   :target: https://www.codacy.com/app/tcunningham/django-zip-stream?utm_source=github.com&utm_medium=referral&utm_content=travcunn/django-zip-stream&utm_campaign=Badge_Grade
+   :target: https://www.codacy.com/app/tcunningham/django-zip-stream
 .. |license| image:: https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000
-   :target: 
+   :target: http://pypi.python.org/pypi/django-zip-stream
