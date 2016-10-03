@@ -72,14 +72,6 @@ environment:
 See also ``make help``.
 
 
-*********************
-Demo project included
-*********************
-
-The `demo` included in project's repository is part of the tests and
-documentation. Maintain it along with code and documentation.
-
-
 .. rubric:: Notes & references
 
 .. target-notes::
