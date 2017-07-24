@@ -31,5 +31,5 @@ class TransferZipResponse(HttpResponse):
         assembles a string containing mod_zip commands for a single file.
         """
         path, system_path, size = file_info
-        single_file_info = "- %s %s %s" % (path, system_path, size)
+        single_file_info = "- %s %s %s" % (size, system_path, path)
         return single_file_info
