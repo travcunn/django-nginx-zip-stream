@@ -11,6 +11,8 @@ server threads and make Python do the heavy lifting. To achieve higher
 performance, django-zip-stream offloads ZIP archive generation to
 Nginx/mod\_zip which frees up web servers to serve other clients.
 
+To use this library, setup Nginx (with mod\_zip installed) as a reverse proxy for your Python web app.
+
 Requirements
 ------------
 
