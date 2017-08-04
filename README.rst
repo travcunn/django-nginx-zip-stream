@@ -44,6 +44,19 @@ Django view that streams a zip with 2 files
            ("/portland.jpg", "/home/travis/portland.jpg", 4096),
         ]
         return TransferZipResponse(filename='download.zip', files=files)
+        
+Sample reverse proxy Nginx configuration
+'''''''''''''''''''''''''''''''''''''''''''
+
+::
+
+    server {
+        listen 80;
+        location / {
+            # Replace the following with the IP/port of your Python web application
+            proxy_pass http://192.168.12.41:8000;
+        }
+    }
 
 Resources
 ---------
