@@ -52,6 +52,8 @@ Sample reverse proxy Nginx configuration
 
 ::
 
+    # Be sure to compile Nginx with mod_zip - https://github.com/evanmiller/mod_zip
+
     server {
         listen 80;
         location / {
