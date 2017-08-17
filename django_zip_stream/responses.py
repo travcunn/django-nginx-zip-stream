@@ -3,11 +3,24 @@ from django.http import HttpResponse
 
 
 class TransferZipResponse(HttpResponse):
-    """Streaming zip response."""
+    """A streaming zip HttpResponse.
+
+    :param filename: Name of the zip file to be used.
+    :param files: list of (path, system_path, size) tuples to be zipped
+
+
+    Usage::
+
+      >>> files = [
+          ("/chicago.jpg", "/home/travis/chicago.jpg", 4096),
+          ("/portland.jpg", "/home/travis/portland.jpg", 4096),
+      ]
+      >>> TransferZipResponse(filename='download.zip', files=files)
+    """
 
     def __init__(self, filename, files):
         """
-        Parameters:
+        Parameters
         filename (string) - Name of the zip file to be streamed.
         files (list of (path, system_path, size) tuples) - List of files to
             be transferred.

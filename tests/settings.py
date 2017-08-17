@@ -30,4 +30,5 @@ NOSE_ARGS = [
     '--cover-package=django_zip_stream',
     '--cover-branches',
     '--cover-erase',
+    '--with-doctest'
 ]

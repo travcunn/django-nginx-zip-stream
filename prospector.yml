@@ -1,0 +1,31 @@
+strictness: veryhigh
+doc-warnings: true
+test-warnings: true
+
+ignore-paths:
+  - docs
+
+pep8:
+  full: true
+  options:
+    max-line-length: 79
+
+pylint:
+  options:
+    dummy-variables-rgx: '_$|__$|dummy'
+    max-line-length: 79
+
+mccabe:
+  options:
+    # According to McCabe, anything that goes beyond 10 is too complex.
+    max-complexity: 10
+
+pep257:
+  run: true
+  disable:
+    # Missing docstring in public method
+    - D102
+    # Missing docstring in "magic methods" like __str__
+    - D105
+    # 1 blank line required before class docstring
+    - D203
