@@ -41,9 +41,10 @@ Django view that streams a zip with 2 files
     from django_zip_stream.responses import TransferZipResponse
 
     def download_zip(request):
+        # Files are located at /home/travis but Nginx is configured to serve from /data
         files = [
-           ("/chicago.jpg", "/home/travis/chicago.jpg", 4096),
-           ("/portland.jpg", "/home/travis/portland.jpg", 4096),
+           ("/chicago.jpg", "/data/home/travis/chicago.jpg", 4096),
+           ("/portland.jpg", "/data//home/travis/portland.jpg", 4096),
         ]
         return TransferZipResponse(filename='download.zip', files=files)
         
@@ -52,15 +53,25 @@ Sample reverse proxy Nginx configuration
 
 ::
 
-    # Be sure to compile Nginx with mod_zip - https://github.com/evanmiller/mod_zip
+    # Compile Nginx with mod_zip - https://github.com/evanmiller/mod_zip
 
     server {
         listen 80;
+        
+        # Replace the following with the IP/port of your Python web application
         location / {
-            # Replace the following with the IP/port of your Python web application
             proxy_pass http://192.168.12.41:8000;
         }
+        
+        # Configure nginx to serve files with absolute paths from an internal location
+        # mod_zip location helper
+        # Note: The leading ^~ is essential here, no more checks should be done after this match
+        location ^~ /data/ {
+	        root /;
+	        internal;
+        }
     }
+
 
 Resources
 ---------
