@@ -44,7 +44,7 @@ Django view that streams a zip with 2 files
         # Files are located at /home/travis but Nginx is configured to serve from /data
         files = [
            ("/chicago.jpg", "/data/home/travis/chicago.jpg", 4096),
-           ("/portland.jpg", "/data//home/travis/portland.jpg", 4096),
+           ("/portland.jpg", "/data/home/travis/portland.jpg", 4096),
         ]
         return TransferZipResponse(filename='download.zip', files=files)
         
