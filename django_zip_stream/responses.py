@@ -38,14 +38,15 @@ class TransferZipResponse(HttpResponse):
         return single_file_info
 
 
-class FolderZipResponse(HttpResponse):
+class FolderZipResponse(TransferZipResponse):
     """Streaming folder zip response."""
 
-    def __init__(self, filename, folder_path, url_prefix=None, add_folder_name=True):
+    def __init__(self, folder_path, filename=None, url_prefix=None, add_folder_name=True):
         """
         Parameters:
-        filename (string): Name of the zip file to be streamed.
         folder_path (string|path): Folder to be transferred.
+        filename (string|None): Name of the zip file to be streamed.
+                                Default: folder name
         url_prefix (string|None): Prefix for every file url.
                                   Default: STATIC_URL
         add_folder_name (bool): Make the folder name part of sys_path.
@@ -62,6 +63,9 @@ class FolderZipResponse(HttpResponse):
         files = [f for f in folder.rglob('*') if f.is_file()]
         tuples = []
 
+        if filename is None:
+            filename = folder.name
+
         for f in files:
             path = os.path.relpath(str(f), str(folder_path))
             system_path = url_prefix
@@ -74,13 +78,4 @@ class FolderZipResponse(HttpResponse):
                 (path, system_path, size)
             )
 
-    @staticmethod
-    def _build_content(file_info):
-        """Return the content string body of a single file for use upstream.
-
-        Given a file_info tuple (path, system_path, size), this method
-        assembles a string containing mod_zip commands for a single file.
-        """
-        path, system_path, size = file_info
-        single_file_info = "- %s %s %s" % (size, system_path, path)
-        return single_file_info
+        super(FolderZipResponse, self).__init__(filename, tuples)
