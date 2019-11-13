@@ -4,6 +4,13 @@ from django.http import HttpResponse
 from django.conf import settings
 from pathlib import Path
 from urllib.parse import quote
+import binascii
+
+
+def CRC32_from_file(filename):
+    buf = open(filename, 'rb').read()
+    buf = (binascii.crc32(buf) & 0xFFFFFFFF)
+    return "%08X" % buf
 
 
 class TransferZipResponse(HttpResponse):
@@ -34,8 +41,14 @@ class TransferZipResponse(HttpResponse):
         Given a file_info tuple (path, system_path, size), this method
         assembles a string containing mod_zip commands for a single file.
         """
-        path, system_path, size = file_info
-        single_file_info = "- %s %s %s" % (size, system_path, path)
+        if len(file_info) == 3:
+            path, system_path, size = file_info
+            single_file_info = "- %s %s %s" % (size, system_path, path)
+        elif len(file_info) == 4:
+            crc, path, system_path, size = file_info
+            single_file_info = "%s %s %s %s" % (crc, size, system_path, path)
+        else:
+            raise Exception("file_info has to be a 3- or 4-tuple.")
         return single_file_info
 
 
@@ -68,6 +81,7 @@ class FolderZipResponse(TransferZipResponse):
             filename = folder.name
 
         for f in files:
+            crc = CRC32_from_file(str(f))
             zip_path = os.path.relpath(str(f), str(folder_path))
             url_path = url_prefix
             if add_folder_name:
@@ -76,7 +90,7 @@ class FolderZipResponse(TransferZipResponse):
             size = f.stat().st_size
 
             tuples.append(
-                (zip_path, quote(url_path), size)
+                (crc, zip_path, quote(url_path), size)
             )
 
         super(FolderZipResponse, self).__init__(filename, tuples)
