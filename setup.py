@@ -19,11 +19,12 @@ class Tox(TestCommand):
         errno = tox.cmdline(self.test_args)
         sys.exit(errno)
 
+
 #: Absolute path to directory containing setup.py file.
 here = os.path.abspath(os.path.dirname(__file__))
 
 README = open(os.path.join(here, 'README.rst')).read()
-VERSION = "0.7.1"
+VERSION = "0.8.0"
 
 setup(
     name='django-zip-stream',
