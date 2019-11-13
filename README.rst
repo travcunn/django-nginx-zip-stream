@@ -18,7 +18,7 @@ Requirements
 
 -  Django 1.7 +
 -  Python 3.4 +
--  Nginx 0.7.25 or later compiled with `mod\_zip`_
+-  Nginx 0.7.25 or later compiled with `mod\_zip`_ (i.e. from https://hub.docker.com/r/yspreen/nginx)
 
 See the Travis CI build matrix for detailed information regarding the
 latest master.
