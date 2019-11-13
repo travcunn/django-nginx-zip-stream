@@ -3,6 +3,7 @@ import os
 from django.http import HttpResponse
 from django.conf import settings
 from pathlib import Path
+from urllib.parse import quote
 
 
 class TransferZipResponse(HttpResponse):
@@ -67,15 +68,15 @@ class FolderZipResponse(TransferZipResponse):
             filename = folder.name
 
         for f in files:
-            path = os.path.relpath(str(f), str(folder_path))
-            system_path = url_prefix
+            zip_path = os.path.relpath(str(f), str(folder_path))
+            url_path = url_prefix
             if add_folder_name:
-                system_path += folder.name + '/'
-            system_path += path
+                url_path += folder.name + '/'
+            url_path += zip_path
             size = f.stat().st_size
 
             tuples.append(
-                (path, system_path, size)
+                (zip_path, quote(url_path), size)
             )
 
         super(FolderZipResponse, self).__init__(filename, tuples)
