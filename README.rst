@@ -17,7 +17,7 @@ Requirements
 ------------
 
 -  Django 1.7 +
--  Python 2.7, 3.4, 3.5, or pypy
+-  Python 3.4 +
 -  Nginx 0.7.25 or later compiled with `mod\_zip`_
 
 See the Travis CI build matrix for detailed information regarding the
