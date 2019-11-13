@@ -28,7 +28,7 @@ Installation
 
 ::
 
-    pip install git+https://github.com/travcunn/django-zip-stream.git
+    pip install git+https://github.com/y-spreen/django-zip-stream.git
 
 Examples
 --------
