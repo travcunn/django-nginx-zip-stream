@@ -79,6 +79,8 @@ class FolderZipResponse(TransferZipResponse):
 
         if filename is None:
             filename = folder.name
+        if not filename.endswith('.zip'):
+            filename += '.zip'
 
         for f in files:
             zip_path = os.path.relpath(str(f), str(folder_path))
