@@ -55,7 +55,7 @@ class TransferZipResponse(HttpResponse):
 class FolderZipResponse(TransferZipResponse):
     """Streaming folder zip response."""
 
-    def __init__(self, folder_path, filename=None, url_prefix=None, add_folder_name=True):
+    def __init__(self, folder_path, filename=None, url_prefix=None, add_folder_name=True, add_hash=False):
         """
         Parameters:
         folder_path (string|path): Folder to be transferred.
@@ -81,7 +81,6 @@ class FolderZipResponse(TransferZipResponse):
             filename = folder.name
 
         for f in files:
-            crc = CRC32_from_file(str(f))
             zip_path = os.path.relpath(str(f), str(folder_path))
             url_path = url_prefix
             if add_folder_name:
@@ -89,8 +88,14 @@ class FolderZipResponse(TransferZipResponse):
             url_path += zip_path
             size = f.stat().st_size
 
-            tuples.append(
-                (crc, zip_path, quote(url_path), size)
-            )
+            if add_hash:
+                crc = CRC32_from_file(str(f))
+                tuples.append(
+                    (crc, zip_path, quote(url_path), size)
+                )
+            else:
+                tuples.append(
+                    (zip_path, quote(url_path), size)
+                )
 
         super(FolderZipResponse, self).__init__(filename, tuples)
