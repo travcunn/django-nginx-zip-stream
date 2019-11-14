@@ -17,8 +17,8 @@ Requirements
 ------------
 
 -  Django 1.7 +
--  Python 2.7, 3.4, 3.5, or pypy
--  Nginx 0.7.25 or later compiled with `mod\_zip`_
+-  Python 3.4 +
+-  Nginx 0.7.25 or later compiled with `mod\_zip`_ (i.e. from https://hub.docker.com/r/yspreen/nginx)
 
 See the Travis CI build matrix for detailed information regarding the
 latest master.
@@ -44,7 +44,7 @@ Django view that streams a zip with 2 files
         # Files are located at /home/travis but Nginx is configured to serve from /data
         files = [
            ("/chicago.jpg", "/data/home/travis/chicago.jpg", 4096),
-           ("/portland.jpg", "/data//home/travis/portland.jpg", 4096),
+           ("/portland.jpg", "/data/home/travis/portland.jpg", 4096),
         ]
         return TransferZipResponse(filename='download.zip', files=files)
         
