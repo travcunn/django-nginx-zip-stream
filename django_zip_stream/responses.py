@@ -24,7 +24,7 @@ class TransferZipResponse(HttpResponse):
             be transferred.
         """
 
-        content = "\n".join(
+        content = "\r\n".join(
             [self._build_content(file_info) for file_info in files])
 
         super(TransferZipResponse, self).__init__(
